@@ -8,6 +8,8 @@
 
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/styles.css">
+  <script src="https://kit.fontawesome.com/28d7569269.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-YA5GjKndW8Pe08XpLcPmoxvIggG+YzYJzeT6Tfz6UkI6UW53s4K4kJUQWMb/l1V7Q2kt0+c0FzFaEJmgL+V+dA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -29,15 +31,27 @@
             <li class="active"><a href="index.html">Home</a></li>
             <li><a href="shop.html">Shop</a></li>
             <li><a href="contact.html">Contact</a></li>
-            <li><a href="login.html">Login</a></li>
+            <li id="login-btn"><a href="login.html">Login</a></li>
           </ul>
         </div>
+      </div>
+      <div class="icons">
+        <a href="cart.html"><i class="fas fa-shopping-basket fa-xl"></i></a>
       </div>
     </nav>
   </header>
   <main>
-    <div class="site-wrap">
     <section id="index">
+      <div class="toast">
+        <div class="toast-content">
+          <i class="fas fa-solid fa-check check"></i>
+          <div class="message">
+            <span class="text text-1" id="toast-title">Success</span>
+            <span class="text text-2" id="toast-details">Your changes has been saved</span>
+          </div>
+        </div>
+        <div class="progress active"></div>
+      </div>
       <div class="site-blocks-cover" style="background-image: url('images/bg-6.jpg');">
         <div class="container">
           <div class="row">
@@ -132,6 +146,7 @@
     </footer>
   </div>
   <script src="js/main.js"></script>
+  <script src="js/login.js"></script>
 </body>
 
 </html>

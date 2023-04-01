@@ -8,6 +8,7 @@
 
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/styles.css">
+  <script src="https://kit.fontawesome.com/28d7569269.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -29,7 +30,6 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="shop.html">Shop</a></li>
             <li><a href="contact.html">Contact</a></li>
-            <li class="active"><a href="#">Login</a></li>
           </ul>
         </div>
       </div>
@@ -37,6 +37,16 @@
   </header>
   <main>
     <section id="login">
+      <div class="toast">
+        <div class="toast-content">
+          <i class="fas fa-solid fa-check check"></i>
+          <div class="message">
+            <span class="text text-1" id="toast-title">Success</span>
+            <span class="text text-2" id="toast-details">Your changes has been saved</span>
+          </div>
+        </div>
+        <div class="progress active"></div>
+      </div>
       <div class="tabbed">
         <input type="radio" name="tabs" id="tab-nav-1" checked>
         <label for="tab-nav-1" style="color: black;">Log In</label>
@@ -46,7 +56,7 @@
           <div>
             <div class="row" style="justify-content: center;">
               <div class="col-md-10">
-                <form action="#" method="post">
+                <form id="login-form" action="#" method="post">
                   <div class="p-lg-5 border">
                     <div class="form-group row">
                       <div class="col-md-12">
@@ -57,12 +67,50 @@
                     <div class="form-group row">
                       <div class="col-md-12">
                         <label for="c_Password" class="text-black">Password <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="c_Password" name="c_Password">
+                        <input type="password" class="form-control" id="c_Password" name="c_Password">
                       </div>
                     </div>
                     <div class="form-group row">
                       <div class="col-lg-12">
-                        <input type="submit" class="btn btn-primary btn-lg btn-block" value="Login">
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>          
+          <div>
+            <div class="row" style="justify-content: center;">
+              <div class="col-md-10">
+                <form id="register-form" action="#" method="post">
+                  <div class="p-lg-5 border">
+                    <div class="form-group row">
+                      <div class="col-md-6 pb-2">
+                        <label for="c_fname" class="text-black">First Name <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="c_fname" name="c_fname">
+                      </div>
+                      <div class="col-md-6 pb-2">
+                        <label for="c_lname" class="text-black">Last Name <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="c_lname" name="c_lname">
+                      </div>
+                      <div class="col-md-6 pb-2">
+                        <label for="c_phone" class="text-black">Phone <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="c_phone" name="c_phone">
+                      </div>
+                      <div class="col-md-6 pb-2">
+                        <label for="c_email_address" class="text-black">Email Address <span
+                            class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="c_email_address" name="c_email_address">
+                      </div>
+                      <div class="col-md-12 pb-4">
+                        <label for="c_password" class="text-black">Password <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="c_password" name="c_password">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-lg-12">
+                        <input type="submit" class="btn btn-primary btn-lg btn-block" value="SignUp">
                       </div>
                     </div>
                   </div>
@@ -70,50 +118,11 @@
               </div>
             </div>
           </div>
-          <div>
-            <div class="row" style="justify-content: center;">
-              <div class="col-md-10">
-                <div class="p-lg-5 border">
-                  <div class="form-group row">
-                    <div class="col-md-6 pb-2">
-                      <label for="c_fname" class="text-black">First Name <span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" id="c_fname" name="c_fname">
-                    </div>
-                    <div class="col-md-6 pb-2">
-                      <label for="c_lname" class="text-black">Last Name <span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" id="c_lname" name="c_lname">
-                    </div>
-                    <div class="col-md-6 pb-2">
-                      <label for="c_email_address" class="text-black">Email Address <span
-                          class="text-danger">*</span></label>
-                      <input type="text" class="form-control" id="c_email_address" name="c_email_address">
-                    </div>
-                    <div class="col-md-6 pb-2">
-                      <label for="c_phone" class="text-black">Phone <span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" id="c_phone" name="c_phone">
-                    </div>
-                    <div class="col-md-12 pb-2">
-                      <label for="c_username" class="text-black">Username <span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" id="c_username" name="c_username">
-                    </div>
-                    <div class="col-md-12 pb-4">
-                      <label for="c_password" class="text-black">Password <span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" id="c_password" name="c_password">
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <div class="col-lg-12">
-                      <input type="submit" class="btn btn-primary btn-lg btn-block" value="SignUp">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
     <script src="js/main.js"></script>
+    <script src="js/login.js"></script>
 </body>
 
 </html>

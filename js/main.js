@@ -1,6 +1,10 @@
 let dropdowns = document.querySelectorAll('.navbar .dropdown-toggler')
 let dropdownIsOpen = false
 
+window.onload = function () {
+  updateNavbar();
+};
+
 if (dropdowns.length) {
   dropdowns.forEach((dropdown) => {
     dropdown.addEventListener('click', (event) => {
@@ -50,3 +54,26 @@ function handleSmallScreens() {
 }
 
 handleSmallScreens()
+
+function activeToaster(title, description) {
+  const toastTitle = document.getElementById('toast-title');
+  toastTitle.innerHTML = title;
+  const toastDetails = document.getElementById('toast-details');
+  toastDetails.innerHTML = description;
+
+  toast = document.querySelector(".toast");
+  (closeIcon = document.querySelector(".close")),
+    (progress = document.querySelector(".progress"));
+
+  let timer1, timer2;
+  toast.classList.add("active");
+  progress.classList.add("active");
+
+  timer1 = setTimeout(() => {
+    toast.classList.remove("active");
+  }, 5000); //1s = 1000 milliseconds
+
+  timer2 = setTimeout(() => {
+    progress.classList.remove("active");
+  }, 5300);
+};

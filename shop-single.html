@@ -8,7 +8,9 @@
 
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/styles.css">
-
+  
+  <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+  <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
   <script src="https://kit.fontawesome.com/28d7569269.js" crossorigin="anonymous"></script>
 </head>
 
@@ -29,7 +31,7 @@
         <div class="navbar-menu" id="open-navbar1">
           <ul class="navbar-nav">
             <li><a href="index.html">Home</a></li>
-            <li class="active"><a href="shop.html">Shop</a></li>
+            <li><a href="shop.html">Shop</a></li>
             <li><a href="contact.html">Contact</a></li>
             <li id="login-btn"><a href="login.html">Login</a></li>
           </ul>
@@ -45,13 +47,14 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 mb-0">
-            <a href="index.html">Home</a> <span class="mx-2 mb-0">/</span> 
-            <strong class="text-black">Shop</strong>
+            <a href="index.html">Home</a> <span class="mx-2 mb-0">/</span>
+            <a href="shop.html">Shop</a> <span class="mx-2 mb-0">/</span>
+            <strong class="text-black" id="drug-name"></strong>
           </div>
         </div>
       </div>
     </div>
-    <section id="shop">
+    <section id="about">
       <div class="toast">
         <div class="toast-content">
           <i class="fas fa-solid fa-check check"></i>
@@ -60,15 +63,45 @@
             <span class="text text-2" id="toast-details">Your changes has been saved</span>
           </div>
         </div>
-        <div class="progress"></div>
+        <div class="progress active"></div>
       </div>
-      <div class="site-section">
-        <div class="container">
-          <div id="drug-list" class="row" style="justify-content: center;"></div>
+      <div class="site-wrap">
+      <div class="site-wrap">
+        <div class="site-navbar py-2">
+          <div class="site-section">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-5 mr-auto">
+                  <div class="border text-center">
+                    <img src="" alt="Image" class="img-fluid p-5" id="drug-image">
+                  </div>
+                </div>
+                <div class="col-md-6" style="word-wrap: break-word;">
+                  <h2 class="text-black" id="drug-title"></h2>
+                  <p><strong class="text-primary h4" id=""></strong></p>
+                  <p id="drug-description"></p>
+                  <p>
+                    <!-- <del id="drug-original-price"></del> -->
+                    <strong class="text-primary h4" id="drug-price"></strong>
+                  <p><strong class="text-primary h4" id="drug-status"></strong></p>
+                  </p>
+                  <div class="mb-5">
+                    <div class="input-group mb-3" style="max-width: 220px;">
+                      <input type="text" class="form-control text-center" value="1" placeholder=""
+                        aria-label="Example text with button addon" aria-describedby="button-addon1" id="input-quantity">
+                    </div>
+                  </div>
+                  <p><button class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary" id="add-to-cart">
+                    Add To Cart</button></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
-    <footer class="site-footer">
+    <footer class="site-footer site-drugDetails-footer">
       <div class="container">
         <div class="row text-center">
           <div class="col-md-12">
@@ -78,7 +111,7 @@
       </div>
     </footer>
     <script src="js/main.js"></script>
-    <script src="js/shop.js"></script>
+    <script src="js/drugDetails.js"></script>
     <script src="js/cart.js"></script>
     <script src="js/login.js"></script>
 </body>

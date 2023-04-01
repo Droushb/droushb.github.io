@@ -9,6 +9,10 @@
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
   <link rel="stylesheet" href="css/styles.css">
+
+  <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+  <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <script src="https://kit.fontawesome.com/28d7569269.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -30,7 +34,7 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="shop.html">Shop</a></li>
             <li><a href="contact.html">Contact</a></li>
-            <li><a href="login.html">Login</a></li>
+            <li id="login-btn"><a href="login.html">Login</a></li>
           </ul>
         </div>
       </div>
@@ -48,6 +52,16 @@
       </div>
     </div>
     <section id="cart">
+      <div class="toast">
+        <div class="toast-content">
+          <i class="fas fa-solid fa-check check"></i>
+          <div class="message">
+            <span class="text text-1" id="toast-title">Success</span>
+            <span class="text text-2" id="toast-details">Your changes has been saved</span>
+          </div>
+        </div>
+        <div class="progress active"></div>
+      </div>
       <div class="site-section">
         <div class="container">
           <div class="row mb-5">
@@ -63,8 +77,8 @@
                       <th class="product-remove">Remove</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <tr>
+                  <tbody id="cart-body">
+                    <!-- <tr data-drug-id="ibuprofen">
                       <td class="product-name">
                         <h2 class="h5 text-black">Ibuprofen</h2>
                       </td>
@@ -72,18 +86,21 @@
                       <td>
                         <div class="input-group" style="max-width: 120px; margin: 0 auto;">
                           <div class="input-group-prepend">
-                            <button class="btn btn-outline-primary js-btn-minus height-auto btn-sm" type="button">&minus;</button>
+                            <button class="btn btn-outline-primary js-btn-minus height-auto btn-sm"
+                              type="button">&minus;</button>
                           </div>
                           <input type="text" class="form-control text-center" value="1" placeholder=""
                             aria-label="Example text with button addon" aria-describedby="button-addon1">
                           <div class="input-group-append">
-                            <button class="btn btn-outline-primary js-btn-plus height-auto btn-sm" type="button">&plus;</button>
+                            <button class="btn btn-outline-primary js-btn-plus height-auto btn-sm"
+                              type="button">&plus;</button>
                           </div>
                         </div>
                       </td>
                       <td>$49.00</td>
-                      <td><a href="#" class="btn btn-primary height-auto btn-sm">X</a></td>
-                    </tr>
+                      <td><button type="button" class="btn btn-primary height-auto btn-sm js-remove-product">X</button>
+                      </td>
+                    </tr> -->
                   </tbody>
                 </table>
               </div>
@@ -91,38 +108,42 @@
           </div>
           <div class="row justify-content-end">
             <div class="col-md-3">
-                <div class="col-md-12">
-                  <div class="row mb-3">
-                    <div class="col-md-5">
-                      <h4 class="text-black">Total</h4>
-                    </div>
-                    <div class="col-md-6 text-right">
-                      <strong class="text-black">$230.00</strong>
-                    </div>
+              <div class="col-md-12">
+                <div class="row mb-3">
+                  <div class="col-md-5">
+                    <h4 class="text-black">Total</h4>
                   </div>
-                  
-                </div>
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label for="c_diff_country" class="text-black">Select a payment method <span class="text-danger">*</span></label>
-                    <select id="c_diff_country" class="form-control">
-                      <option value="2">GooglePay</option>
-                      <option value="3">PayPal</option>
-                    </select>
+                  <div class="col-md-6 text-right">
+                    <strong class="text-black"  id="total-field"></strong>
                   </div>
                 </div>
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <button class="btn btn-primary btn-lg btn-block" onclick="window.location='thankyou.html'">Order</button>
-                  </div>
+
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="c_diff_country" class="text-black">Select a payment method <span
+                      class="text-danger">*</span></label>
+                  <select id="c_diff_country" class="form-control">
+                    <option value="2">GooglePay</option>
+                    <option value="3">PayPal</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <button class="btn btn-primary btn-lg btn-block"
+                    onclick="makeOrder()">Order</button>
                 </div>
               </div>
             </div>
+          </div>
         </div>
       </div>
-      
+
     </section>
     <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/login.js"></script>
 </body>
 
 </html>
