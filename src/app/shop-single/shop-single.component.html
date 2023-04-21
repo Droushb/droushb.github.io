@@ -1,0 +1,47 @@
+<section id="about">
+    <div class="site-wrap">
+        <div class="site-wrap">
+            <div class="site-navbar py-2">
+                <div class="site-section">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-5 mr-auto">
+                                <div class="border text-center">
+                                    <img src="{{ drugDetails.Image }}"
+                                         alt="product"
+                                         class="product-thumbnail">
+                                </div>
+                            </div>
+                            <div class="col-md-6  product-card wow fadeInUp"
+                                 style="word-wrap: break-word;">
+                                <h2 class="text-black"
+                                    id="drug-title">{{ drugDetails.Name }}</h2>
+                                <p><strong class="feature-card-content"
+                                            id="">{{ drugDetails.Description }}</strong></p>
+                                <p id="drug-description"></p>
+                                <p><strong class="text-primary h4"
+                                            id="drug-price">{{ drugDetails.Price }}</strong>
+                                <p><strong class="text-primary h4"
+                                            id="drug-status">{{ drugDetails.Status }}</strong></p>
+                                <div class="mb-5">
+                                    <div class="input-group mb-3"
+                                         style="max-width: 220px;">
+                                        <input type="text"
+                                               class="form-control text-center"
+                                               value="1"
+                                               placeholder=""
+                                               aria-label="Example text with button addon"
+                                               aria-describedby="button-addon1"
+                                               id="input-quantity"
+                                               #quantityInput>
+                                    </div>
+                                </div>
+                                <button class="btn btn-submit" (click)="addToCartFromShop(drugDetails.Id, quantityInput.value)">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,62 @@
+<section id="register">
+  <div class="contact-page">
+    <div class="container">
+      <h1 class="oleez-page-title wow fadeInUp">Sign Up</h1>
+      <div class="row">
+        <div class="col-md-6 pl-lg-5 wow fadeInRight">
+          <form [formGroup]="formData"
+                (ngSubmit)="onSubmit(formData)"
+                class="oleez-contact-form">
+            <div class="form-group">
+              <input type="text"
+                     class="oleez-input"
+                     id="fName"
+                     name="fName"
+                     formControlName="firstName"
+                     required>
+              <label for="fName">*First name</label>
+            </div>
+            <div class="form-group">
+              <input type="text"
+                     class="oleez-input"
+                     id="lName"
+                     name="lName"
+                     formControlName="secondName"
+                     required>
+              <label for="lName">*Last name</label>
+            </div>
+            <div class="form-group">
+              <input type="text"
+                     class="oleez-input"
+                     id="Phone"
+                     name="Phone"
+                     formControlName="phone"
+                     required>
+              <label for="Phone">*Phone</label>
+            </div>
+            <div class="form-group">
+              <input type="text"
+                     class="oleez-input"
+                     id="Email"
+                     name="Email"
+                     formControlName="email"
+                     required>
+              <label for="Email">*Email</label>
+            </div>
+            <div class="form-group">
+              <input type="Password"
+                     class="oleez-input"
+                     id="Password"
+                     name="Password"
+                     formControlName="password"
+                     required>
+              <label for="Password">*Password</label>
+            </div>
+            <button type="submit"
+                    class="btn btn-submit">Sign Up</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
