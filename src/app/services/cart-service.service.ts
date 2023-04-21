@@ -82,7 +82,7 @@ export class CartServiceService {
 
   async makeOrder() {
     const access_token = this._JWTTokenServiceService.getAccessToken();
-    if (access_token != "" || access_token != undefined) {
+    if (access_token != "" && access_token != undefined) {
       this.cartItems = this.getCartItems();
       const userId = this._JWTTokenServiceService.getUserId();
       const items = this.cartItems.map(item => {
@@ -104,8 +104,6 @@ export class CartServiceService {
       };
 
       await this._restClientServiceService.makeOrder(requestBody, headers);
-      this.cleanCart();
-      // CartComponent.ngOnInit();
     }
     return;
   }
