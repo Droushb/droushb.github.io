@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { RestClientServiceService } from '../services/rest-client-service.service';
-import { FormControl, FormGroup, Validators, ReactiveFormsModule  } from '@angular/forms';
+import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { JWTTokenServiceService } from '../services/jwttoken-service.service';
 import { Router } from '@angular/router';
 import { map } from 'rxjs';
+import { CartServiceService } from '../services/cart-service.service';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,7 @@ export class LoginComponent implements OnInit {
     protected restClientServiceService: RestClientServiceService,
     protected _JWTTokenServiceService: JWTTokenServiceService,
     protected route: Router,
+    protected _cartServiceService: CartServiceService,
   ) { }
 
   formData = new FormGroup({
@@ -38,7 +40,11 @@ export class LoginComponent implements OnInit {
     token$.toPromise().then((token: string) => {
       this._JWTTokenServiceService.setToken(token);
       // this.isTokenExpired$.next(false);
+      this._cartServiceService.openSnackBar("You successfully logged in!");
       this.route.navigate(['/shop']);
+    }).catch((error: any) => {
+      this._cartServiceService.openSnackBar("Error: " + error.error);
     });
   }
+
 }

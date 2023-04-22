@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -28,15 +28,6 @@ export class RestClientServiceService {
   }
 
   makeOrder(body: any, headers: any) {
-    return this.http.post(this.baseUrl + '/order', body, { headers: headers })
-      .subscribe(
-        res => {
-          console.log(res);
-        },
-        err => {
-          console.log(err.message);
-        }
-      )
-    // return this.http.post(this.baseUrl + '/order', JSON.stringify(body), headers);
+    return this.http.post(this.baseUrl + '/order', body, { headers: headers });
   }
 }

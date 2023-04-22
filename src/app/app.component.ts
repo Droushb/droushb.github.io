@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { JWTTokenServiceService } from './services/jwttoken-service.service';
 import { BehaviorSubject } from 'rxjs';
+import { CartServiceService } from './services/cart-service.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,10 @@ export class AppComponent {
   title = 'pharmacy-website';
   public isTokenExpired$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  constructor(protected _JWTTokenServiceService: JWTTokenServiceService) {
+
+  constructor(
+    protected _JWTTokenServiceService: JWTTokenServiceService,
+    protected _cartServiceService: CartServiceService) {
   }
 
   ngOnInit(): void {
@@ -24,5 +28,6 @@ export class AppComponent {
   logout() {
     this._JWTTokenServiceService.logout();
     this.isTokenExpired$.next(true);
+    this._cartServiceService.openSnackBar("You successfully logged out!");
   }
 }

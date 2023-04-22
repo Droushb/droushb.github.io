@@ -14,18 +14,22 @@ export class ShopSingleComponent implements OnInit {
   drugDetails!: DrugDetails;
 
   constructor(
-    public _restClientServiceService: RestClientServiceService,
-    private route: ActivatedRoute,
-    private _cartServiceService: CartServiceService
-  ) {}
+    protected _restClientServiceService: RestClientServiceService,
+    protected route: ActivatedRoute,
+    protected _cartServiceService: CartServiceService,
+  ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.drugId = params['drugId'];
       this._restClientServiceService.getDrugDetails(this.drugId)
-      .subscribe((response: any) => {
-        this.drugDetails = response;
-      });
+        .subscribe((response: any) => {
+          this.drugDetails = response;
+        },
+          (error: any) => {
+            this._cartServiceService.openSnackBar("Error: " + error.error);
+          }
+        );
     });
   }
 

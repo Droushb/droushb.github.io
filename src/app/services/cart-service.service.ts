@@ -3,20 +3,25 @@ import { RestClientServiceService } from './rest-client-service.service';
 import { Router } from '@angular/router';
 import { JWTTokenServiceService } from './jwttoken-service.service';
 import { Cart } from '../models/Cart.model';
-import { HttpHeaders } from '@angular/common/http';
-import { map } from 'rxjs';
-import { CartComponent } from '../cart/cart.component';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartServiceService {
   cartItems: Cart[] = [];
+  horizontalPosition: MatSnackBarHorizontalPosition = 'right';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
   constructor(
     protected _restClientServiceService: RestClientServiceService,
     protected _JWTTokenServiceService: JWTTokenServiceService,
     protected route: Router,
+    protected _snackBar: MatSnackBar
   ) { }
 
   getCartItems(): Cart[] {
@@ -32,9 +37,7 @@ export class CartServiceService {
     this.cartItems = this.getCartItems();
     let cartItem = this.cartItems?.find((item: any) => item.DrugId === drugId);
     if (cartItem) {
-      cartItem.Quantity = Number(cartItem.Quantity) + quantity;
-      cartItem.Total = cartItem.Quantity * cartItem.Price;
-      localStorage.setItem("cartItems", JSON.stringify(this.cartItems));
+      this.openSnackBar("Element already in cart!");
       return Promise.resolve(this.cartItems);
     } else {
       return this._restClientServiceService.getDrugDetails(drugId)
@@ -49,7 +52,12 @@ export class CartServiceService {
           } as Cart;
           this.cartItems.push(cartItem);
           localStorage.setItem("cartItems", JSON.stringify(this.cartItems));
+          this.openSnackBar("Drug successfully added to cart!");
           return this.cartItems;
+        })
+        .catch((error: any) => {
+          this.openSnackBar("Error: " + error.error);
+          return Promise.reject(error);
         });
     }
   }
@@ -103,31 +111,26 @@ export class CartServiceService {
         'Authorization': 'Bearer ' + access_token
       };
 
-      await this._restClientServiceService.makeOrder(requestBody, headers);
+      await this._restClientServiceService.makeOrder(requestBody, headers)
+        .toPromise()
+        .then((response: any) => {
+          this.openSnackBar("Your order has been successfully placed");
+          return Promise.resolve(response);
+        })
+        .catch((error: any) => {
+          this.openSnackBar("Error: " + error.error);
+          return Promise.reject(error);
+        });
     }
-    return;
+    this.openSnackBar("You must be logged in to make an order!");
+    return Promise.reject("You must be logged in to make an order!");
+  }
+
+  openSnackBar(message: string) {
+    this._snackBar.open(message, 'OK', {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+      duration: 5000,
+    });
   }
 }
-
-  // fetch('http://localhost:5000/order', {
-  //   method: 'POST',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     'Authorization': 'Bearer ' + access_token
-  //   },
-  //   body: JSON.stringify(requestBody)
-  // })
-  //   .then(response => {
-  //     if (response.ok) {
-  //       let cartItems = [];
-  //       localStorage.setItem('cartItems', JSON.stringify(cartItems));
-  //       window.location = 'thankyou.html'
-  //     } else {
-  //       // response status code is outside the 200-299 range
-  //       throw new Error('HTTP status ' + response.status);
-  //     }
-  //   })
-  //   .then(data => {
-  //     console.log(data.access_token);
-  //   })
-  //   .catch(error => activeToaster("Error", error));

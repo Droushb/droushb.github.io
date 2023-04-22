@@ -5,21 +5,23 @@
         <h2 class="page-title">Shop</h2>
       </div>
       <div class="row">
-        <div class="col-md-4 product-card wow fadeInUp" *ngFor="let drug of drugList">
+        <div class="col-md-4 product-card wow fadeInUp"
+             *ngFor="let drug of drugList">
           <div class="product-thumbnail-wrapper"><a class="nav-link"
-            routerLink="/shop-single/{{ drug.Id }}"
-            routerLinkActive="active"
-            ariaCurrentWhenActive="page">
-            <img src="{{ drug.Image }}"
-                 alt="{{ drug.Name }}"
-                 class="product-thumbnail"></a>
+               routerLink="/shop-single/{{ drug.Id }}"
+               routerLinkActive="active"
+               ariaCurrentWhenActive="page">
+              <img src="{{ drug.Image }}"
+                   alt="{{ drug.Name }}"
+                   class="product-thumbnail"></a>
           </div>
           <h5 class="product-title"><a class="nav-link"
-            routerLink="/shop-single/{{ drug.Id }}"
-            routerLinkActive="active"
-            ariaCurrentWhenActive="page">{{ drug.Name }}</a></h5>
+               routerLink="/shop-single/{{ drug.Id }}"
+               routerLinkActive="active"
+               ariaCurrentWhenActive="page">{{ drug.Name }}</a></h5>
           <p class="product-price">£{{ drug.Price }},00 <del>£0,00</del></p>
-          <div class="btn-wrapper"> <button class="btn btn-add-to-cart" (click)="addToCartFromShop(drug.Id)">Add to Cart</button></div>
+          <div class="btn-wrapper"> <button class="btn btn-add-to-cart"
+                    (click)="addToCartFromShop(drug.Id)">Add to Cart</button></div>
         </div>
       </div>
     </div>

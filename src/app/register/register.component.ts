@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { RestClientServiceService } from '../services/rest-client-service.service';
 import { JWTTokenServiceService } from '../services/jwttoken-service.service';
 import { Router } from '@angular/router';
-import { FormControl, FormGroup, Validators  } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from '../models/User.model';
 import { map } from 'rxjs/operators';
+import { CartServiceService } from '../services/cart-service.service';
 
 @Component({
   selector: 'app-register',
@@ -16,6 +17,7 @@ export class RegisterComponent implements OnInit {
     protected restClientServiceService: RestClientServiceService,
     protected _JWTTokenServiceService: JWTTokenServiceService,
     protected route: Router,
+    protected _cartServiceService: CartServiceService
   ) { }
 
   formData = new FormGroup({
@@ -29,7 +31,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
+
   onSubmit(form: any) {
     const user: User = {
       firstName: form.value.firstName,
@@ -39,7 +41,7 @@ export class RegisterComponent implements OnInit {
       password: form.value.password,
       role: 'user' // or any default role you want to assign
     };
-  
+
     const token$ = this.restClientServiceService.register(user).pipe(
       map((response: any) => {
         return response.access_token;
@@ -48,14 +50,10 @@ export class RegisterComponent implements OnInit {
 
     token$.toPromise().then((token: string) => {
       this._JWTTokenServiceService.setToken(token);
+      this._cartServiceService.openSnackBar("You successfully registered!");
       this.route.navigate(['/shop']);
+    }).catch((error: any) => {
+      this._cartServiceService.openSnackBar("Error: " + error.error);
     });
-
-    // this.restClientServiceService.register(user).subscribe(
-    //   (response: any) => {
-    //     this._JWTTokenServiceService.setToken(response.access_token);
-    //     this.route.navigate(['/shop']);
-    //   }
-    // );
   }
 }

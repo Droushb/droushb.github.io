@@ -14,7 +14,7 @@ export class JWTTokenServiceService {
     this.jwtToken = localStorage.getItem("token")!;
     window.addEventListener("storage", this.onStorage.bind(this));
   }
-  
+
   onStorage(event: StorageEvent) {
     if (event.key === "token") {
       this.jwtToken = event.newValue!;

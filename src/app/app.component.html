@@ -21,48 +21,18 @@
         integrity="sha512-YA5GjKndW8Pe08XpLcPmoxvIggG+YzYJzeT6Tfz6UkI6UW53s4K4kJUQWMb/l1V7Q2kt0+c0FzFaEJmgL+V+dA=="
         crossorigin="anonymous"
         referrerpolicy="no-referrer" />
-
 </head>
 
 <body>
-  <!-- <header>
-    <nav class="navbar">
-      <div class="container">
-        <div class="navbar-header">
-          <button class="navbar-toggler"
-                  data-toggle="open-navbar1">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-          <a routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page">
-            <h4><span>my</span>Pharmacy</h4>
-          </a>
-        </div>
-        <div class="navbar-menu"
-             id="open-navbar1">
-          <ul class="navbar-nav">
-            <li class="active"><a routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a></li>
-            <li><a routerLink="/shop" routerLinkActive="active" ariaCurrentWhenActive="page">Shop</a></li>
-            <li><a routerLink="/contact" routerLinkActive="active" ariaCurrentWhenActive="page">Contact</a></li>
-            <li id="login-btn"><a routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Login</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="icons">
-        <a href="cart.html"><i class="fas fa-shopping-basket fa-xl"></i></a>
-      </div>
-    </nav>
-  </header> -->
   <header class="oleez-header">
     <nav class="navbar navbar-expand-lg navbar-light">
       <a class="navbar-brand"
-         href="index.html"><img src="assets/images/main_logo.png"
+         routerLink="/home"><img src="assets/images/main_logo.png"
              alt="Oleez"></a>
       <ul class="nav nav-actions d-lg-none ml-auto">
         <li class="nav-item">
           <a class="nav-link"
-             href="#!"
+             routerLink="/login"
              data-toggle="loginModal">Login
           </a>
         </li>
@@ -148,7 +118,7 @@
           <li class="nav-item nav-item-cart">
             <a class="nav-link nav-link-btn"
                routerLink="/cart">
-              <span class="cart-item-count">0</span>
+              <span class="cart-item-count"></span>
               <img src="assets/images/shopping-cart.svg"
                    alt="cart">
             </a>
@@ -226,8 +196,9 @@
           </div>
       </div>
     </div> -->
-  <!-- <script src="js/main.js"></script>
-  <script src="js/login.js"></script> -->
+  <script src="../../dist/main.js"></script>
+  <script src="../../dist/landing.js"></script>
+  <script src="../../dist/loader.js"></script>
 </body>
 
 </html>
