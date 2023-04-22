@@ -11,7 +11,7 @@ import { CartServiceService } from './services/cart-service.service';
 export class AppComponent {
   title = 'pharmacy-website';
   public isTokenExpired$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-
+  numOfCartItems: number = 0;
 
   constructor(
     protected _JWTTokenServiceService: JWTTokenServiceService,
@@ -22,6 +22,7 @@ export class AppComponent {
     setInterval(() => {
       const isExpired = this._JWTTokenServiceService.isTokenExpired();
       this.isTokenExpired$.next(isExpired);
+      this.numOfCartItems = this._cartServiceService.getCartItems().length;
     }, 1000);
   }
 

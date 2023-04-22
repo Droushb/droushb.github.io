@@ -115,6 +115,7 @@ export class CartServiceService {
         .toPromise()
         .then((response: any) => {
           this.openSnackBar("Your order has been successfully placed");
+          this.cleanCart();
           return Promise.resolve(response);
         })
         .catch((error: any) => {

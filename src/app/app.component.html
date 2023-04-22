@@ -30,16 +30,10 @@
          routerLink="/home"><img src="assets/images/main_logo.png"
              alt="Oleez"></a>
       <ul class="nav nav-actions d-lg-none ml-auto">
-        <li class="nav-item">
-          <a class="nav-link"
-             routerLink="/login"
-             data-toggle="loginModal">Login
-          </a>
-        </li>
         <li class="nav-item nav-item-cart">
           <a class="nav-link"
              routerLink="/cart">
-            <span class="cart-item-count">0</span>
+            <span class="cart-item-count">{{numOfCartItems}}</span>
             <img src="assets/images/shopping-cart.svg"
                  alt="cart">
           </a>
@@ -118,7 +112,7 @@
           <li class="nav-item nav-item-cart">
             <a class="nav-link nav-link-btn"
                routerLink="/cart">
-              <span class="cart-item-count"></span>
+              <span class="cart-item-count">{{numOfCartItems}}</span>
               <img src="assets/images/shopping-cart.svg"
                    alt="cart">
             </a>

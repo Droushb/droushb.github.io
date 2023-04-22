@@ -37,7 +37,6 @@ export class CartComponent {
 
   makeOrder() {
     this._cartServiceService.makeOrder();
-    this._cartServiceService.cleanCart();
     this.dataSource.data = this._cartServiceService.getCartItems();
   }
 }
