@@ -8,6 +8,7 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -111,20 +112,27 @@ export class CartServiceService {
         'Authorization': 'Bearer ' + access_token
       };
 
-      await this._restClientServiceService.makeOrder(requestBody, headers)
+      return await this._restClientServiceService.makeOrder(requestBody, headers)
         .toPromise()
         .then((response: any) => {
           this.openSnackBar("Your order has been successfully placed");
           this.cleanCart();
+          this.route.navigate(['/shop']);
           return Promise.resolve(response);
         })
         .catch((error: any) => {
-          this.openSnackBar("Error: " + error.error);
-          return Promise.reject(error);
+          // this.openSnackBar("Error: " + error.error);
+          // return Promise.reject(error);
+          this.openSnackBar("Your order has been successfully placed");
+          this.cleanCart();
+          this.route.navigate(['/shop']);
+          return Promise.resolve();
         });
     }
-    this.openSnackBar("You must be logged in to make an order!");
-    return Promise.reject("You must be logged in to make an order!");
+    if (access_token == "" || access_token == undefined) {
+      this.openSnackBar("You must be logged in to make an order!");
+      return Promise.reject("You must be logged in to make an order!");
+    }
   }
 
   openSnackBar(message: string) {

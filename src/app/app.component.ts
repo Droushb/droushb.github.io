@@ -12,6 +12,7 @@ export class AppComponent {
   title = 'pharmacy-website';
   public isTokenExpired$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   numOfCartItems: number = 0;
+  toggleNavbar = true;
 
   constructor(
     protected _JWTTokenServiceService: JWTTokenServiceService,

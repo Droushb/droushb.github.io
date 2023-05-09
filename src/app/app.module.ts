@@ -13,7 +13,8 @@ import { ShopSingleComponent } from './shop-single/shop-single.component';
 import { CartComponent } from './cart/cart.component';
 import { RegisterComponent } from './register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
     HttpClientModule,
     BrowserAnimationsModule,
     MatTableModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    NgbCollapseModule
   ],
   providers: [],
   bootstrap: [AppComponent]
