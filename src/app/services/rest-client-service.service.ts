@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { catchError, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,12 @@ export class RestClientServiceService {
   baseUrl = 'http://localhost:5000';
 
   getDrugs() {
-    return this.http.get(this.baseUrl + '/drugs');
+    return this.http.get<any>(this.baseUrl + '/drugs').pipe(
+      catchError(error => {
+        console.error(error);
+        return of({ error: 'Something went wrong' });
+      })
+    );
   }
 
   getDrugDetails(drugId: any) {

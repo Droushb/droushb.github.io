@@ -8,11 +8,11 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class CartServiceService {
   cartItems: Cart[] = [];
   horizontalPosition: MatSnackBarHorizontalPosition = 'right';
@@ -72,16 +72,15 @@ export class CartServiceService {
     }
   }
 
-  updateCartItemById(drugId: number, quantity: number) {
+  updateCartItemById(drugId: number, quantity: number): Promise<Cart[]> {
     this.cartItems = this.getCartItems();
     let cartItem = this.cartItems.find((item: any) => item.DrugId === drugId);
     if (cartItem) {
       cartItem.Quantity = quantity;
       cartItem.Total = cartItem.Quantity * cartItem.Price;
       localStorage.setItem("cartItems", JSON.stringify(this.cartItems));
-      return Promise.resolve(this.cartItems);
     }
-    return;
+    return Promise.resolve(this.cartItems);
   }
 
   cleanCart() {
@@ -128,11 +127,10 @@ export class CartServiceService {
           this.route.navigate(['/shop']);
           return Promise.resolve();
         });
-    }
-    if (access_token == "" || access_token == undefined) {
-      this.openSnackBar("You must be logged in to make an order!");
-      return Promise.reject("You must be logged in to make an order!");
-    }
+      } else {
+        this.openSnackBar("You must be logged in to make an order!");
+        return Promise.reject(new Error("You must be logged in to make an order!"));
+      }
   }
 
   openSnackBar(message: string) {

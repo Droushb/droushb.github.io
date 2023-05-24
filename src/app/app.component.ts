@@ -6,7 +6,7 @@ import { CartServiceService } from './services/cart-service.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   title = 'pharmacy-website';
@@ -21,7 +21,7 @@ export class AppComponent {
 
   ngOnInit(): void {
     setInterval(() => {
-      const isExpired = this._JWTTokenServiceService.isTokenExpired();
+      const isExpired = this._JWTTokenServiceService.isLoggedIn();
       this.isTokenExpired$.next(isExpired);
       this.numOfCartItems = this._cartServiceService.getCartItems().length;
     }, 1000);

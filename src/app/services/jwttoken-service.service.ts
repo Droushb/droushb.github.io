@@ -10,15 +10,14 @@ export class JWTTokenServiceService {
 
   constructor() { }
 
-  onInit() {
+  onInit() {                             //Цей обробник викликається, коли змінюється стан localStorage на іншій вкладці браузера або в іншому вікні, зберігає токен користувача
     this.jwtToken = localStorage.getItem("token")!;
     window.addEventListener("storage", this.onStorage.bind(this));
   }
-
-  onStorage(event: StorageEvent) {
+  
+  onStorage(event: StorageEvent) {       //відстеження змін в localStorage
     if (event.key === "token") {
       this.jwtToken = event.newValue!;
-      // Handle the new token value here
     }
   }
 
@@ -45,21 +44,13 @@ export class JWTTokenServiceService {
 
   getUserId() {
     this.decodeToken();
-    return this.decodedToken ? this.decodedToken['userId'] : null;
+    return this.decodedToken ? this.decodedToken['sub'] : null;
   }
 
-  getExpiryTime() {
+  isLoggedIn(): boolean {
     this.decodeToken();
-    return this.decodedToken ? this.decodedToken['exp'] : null as any;
-  }
-
-  isTokenExpired(): boolean {
-    const expiryTime: number = this.getExpiryTime();
-    if (expiryTime) {
-      return ((1000 * expiryTime) - Date.now() < 5000) ? true : false;
-    } else {
-      return true;
-    }
+    return this.jwtToken != '' ? true : false 
+    
   }
 
   logout() {

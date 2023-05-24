@@ -3,7 +3,7 @@ import { RestClientServiceService } from '../services/rest-client-service.servic
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { JWTTokenServiceService } from '../services/jwttoken-service.service';
 import { Router } from '@angular/router';
-import { map } from 'rxjs';
+import { map, from } from 'rxjs';
 import { CartServiceService } from '../services/cart-service.service';
 
 @Component({
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     const email = data.value.email;
     const password = data.value.password;
 
-    const token$ = this.restClientServiceService.login(email, password).pipe(
+    const token$ = from(this.restClientServiceService.login(email, password)).pipe(
       map((response: any) => {
         return response.access_token;
       })
