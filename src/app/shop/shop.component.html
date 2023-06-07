@@ -1,0 +1,29 @@
+<section id="shop">
+  <div class="shop-page">
+    <div class="container">
+      <div class="page-header wow fadeInUp">
+        <h2 class="page-title">Shop</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-4 product-card wow fadeInUp"
+             *ngFor="let drug of drugList">
+          <div class="product-thumbnail-wrapper"><a class="nav-link"
+               routerLink="/shop-single/{{ drug.Id }}"
+               routerLinkActive="active"
+               ariaCurrentWhenActive="page">
+              <img src="{{ drug.Image }}"
+                   alt="{{ drug.Name }}"
+                   class="product-thumbnail"></a>
+          </div>
+          <h5 class="product-title"><a class="nav-link"
+               routerLink="/shop-single/{{ drug.Id }}"
+               routerLinkActive="active"
+               ariaCurrentWhenActive="page">{{ drug.Name }}</a></h5>
+          <p class="product-price">£{{ drug.Price }},00 <del>£ {{ drug.Price + 10 }}</del></p>
+          <div class="btn-wrapper"> <button class="btn btn-add-to-cart"
+                    (click)="addToCartFromShop(drug.Id)">Add to Cart</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

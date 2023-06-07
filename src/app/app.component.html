@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Pharmacy</title>
+  <meta charset="utf-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <script src="https://kit.fontawesome.com/28d7569269.js"
+          crossorigin="anonymous"></script>
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-YA5GjKndW8Pe08XpLcPmoxvIggG+YzYJzeT6Tfz6UkI6UW53s4K4kJUQWMb/l1V7Q2kt0+c0FzFaEJmgL+V+dA=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer" />
+  <script src="https://kit.fontawesome.com/28d7569269.js"
+          crossorigin="anonymous"></script>
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-YA5GjKndW8Pe08XpLcPmoxvIggG+YzYJzeT6Tfz6UkI6UW53s4K4kJUQWMb/l1V7Q2kt0+c0FzFaEJmgL+V+dA=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer" />
+</head>
+
+<body>
+  <header class="oleez-header">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <a class="navbar-brand"
+         routerLink="/home"><img src="assets/images/main_logo.png"
+             alt="Oleez"></a>
+      <ul class="nav nav-actions d-lg-none ml-auto">
+        <li class="nav-item nav-item-cart">
+          <a class="nav-link"
+             routerLink="/cart">
+            <span class="cart-item-count">{{numOfCartItems}}</span>
+            <img src="assets/images/shopping-cart.svg"
+                 alt="cart">
+          </a>
+        </li>
+      </ul>
+      <button class="navbar-toggler d-lg-none"
+              type="button"
+              (click)="toggleNavbar = !toggleNavbar"
+              data-toggle="collapse"
+              data-target="#oleezMainNav"
+              aria-controls="oleezMainNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse"
+           id="oleezMainNav"
+           [ngbCollapse]="toggleNavbar">
+        <ul class="navbar-nav mx-auto mt-2 mt-lg-0">
+          <li class="nav-item">
+            <a class="nav-link"
+               routerLink="/home"
+               routerLinkActive="active"
+               ariaCurrentWhenActive="page">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"
+               routerLink="/shop"
+               routerLinkActive="active"
+               ariaCurrentWhenActive="page">Shop</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"
+               routerLink="/contact"
+               routerLinkActive="active"
+               ariaCurrentWhenActive="page">Contact</a>
+          </li>
+          <li class="nav-item"
+              data-toggle="loginModal"
+              id="loginModal"
+              *ngIf="isTokenExpired$ | async">
+            <a class="nav-link"
+               routerLink="/login"
+               routerLinkActive="active"
+               ariaCurrentWhenActive="page">Login</a>
+          </li>
+          <li class="nav-item"
+              data-toggle="registerModal"
+              id="registerModal"
+              *ngIf="isTokenExpired$ | async">
+            <a class="nav-link"
+               routerLink="/register"
+               routerLinkActive="active"
+               ariaCurrentWhenActive="page">Register</a>
+          </li>
+          <li class="nav-item"
+              data-toggle="logoutModal"
+              id="logoutModal"
+              *ngIf="!(isTokenExpired$ | async)">
+            <a class="nav-link"
+               (click)="logout()"
+               ariaCurrentWhenActive="page">Logout</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav d-none d-lg-flex">
+          <!-- <li class="nav-item">
+            <a class="nav-link"
+               href="#"
+               data-toggle="loginModal">Login
+            </a>
+          </li> -->
+          <li class="nav-item nav-item-cart">
+            <a class="nav-link nav-link-btn"
+               onclick="logout()">
+              <i class="fa-solid fa-right-from-bracket fa-xl"></i>
+            </a>
+          </li>
+          <li class="nav-item nav-item-cart">
+            <a class="nav-link nav-link-btn"
+               routerLink="/cart">
+              <span class="cart-item-count">{{numOfCartItems}}</span>
+              <img src="assets/images/shopping-cart.svg"
+                   alt="cart">
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer class="oleez-footer wow fadeInUp">
+    <div class="container">
+      <div class="footer-content">
+        <div class="row">
+          <div class="col-md-6">
+            <img src="assets/images/main_logo_2.png"
+                 alt="oleez"
+                 class="footer-logo">
+            <p class="footer-intro-text">Don't be shy, get in touch with us and create the world again!</p>
+            <nav class="footer-social-links">
+              <a href="#!">Instagram</a>
+            </nav>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-6 footer-widget-text">
+                <h6 class="widget-title">Email</h6>
+                <p class="widget-content">droush.b@gmail.com</p>
+              </div>
+              <div class="col-md-6 footer-widget-text">
+                <h6 class="widget-title">ADDRESS</h6>
+                <p class="widget-content">33 rue Burdeau 69089 <br> Paris France</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-text">
+        <p class="mb-md-0">© 2023 Made with passion by <a href="https://www.bootstrapdash.com"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="text-reset">Bohdan Drushkevych</a>.</p>
+      </div>
+    </div>
+  </footer>
+  <!-- <div id="loginModal"
+         class="search-modal">
+        <button type="button"
+                class="close"
+                aria-label="Close"
+                data-dismiss="loginModal">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="contact-page">
+          <div class="container">
+              <h1 class="oleez-page-title wow fadeInUp">Login</h1>
+              <div class="row">
+                  <div class="col-md-6 pl-lg-5 wow fadeInRight">
+                      <form action="POST" class="oleez-contact-form">
+                        <div class="form-group">
+                            <input type="email" class="oleez-input" id="fullName" name="email" required>
+                            <label for="email">*Email</label>
+                        </div>
+                          <div class="form-group">
+                              <input type="password" class="oleez-input" id="password" name="password" required>
+                              <label for="password">*Password</label>
+                          </div>
+                          <button type="submit" class="btn btn-submit">Login</button>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div> -->
+  <script src="../../dist/main.js"></script>
+  <script src="../../dist/landing.js"></script>
+  <script src="../../dist/loader.js"></script>
+</body>
+
+</html>

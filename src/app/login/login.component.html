@@ -1,0 +1,35 @@
+<section id="login">
+    <div class="contact-page">
+        <div class="container">
+            <h1 class="oleez-page-title wow fadeInUp">Login</h1>
+            <div class="row">
+                <div class="col-md-6 pl-lg-5 wow fadeInRight">
+                    <form [formGroup]="formData"
+                          (ngSubmit)="onSubmit(formData)"
+                          class="oleez-contact-form">
+                        <div class="form-group">
+                            <input type="email"
+                                   class="oleez-input"
+                                   id="fullName"
+                                   name="email"
+                                   formControlName="email"
+                                   required>
+                            <label for="email">*Email</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="password"
+                                   class="oleez-input"
+                                   id="password"
+                                   name="password"
+                                   formControlName="password"
+                                   required>
+                            <label for="password">*Password</label>
+                        </div>
+                        <button type="submit"
+                                class="btn btn-submit">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
