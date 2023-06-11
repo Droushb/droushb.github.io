@@ -13,6 +13,7 @@ import { MatTableDataSource } from '@angular/material/table';
 export class CartComponent {
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>([]);
   displayedColumns: string[] = ['name', 'price', 'quantity', 'total', 'remove'];
+  total: number = 0;
 
   constructor(
     protected restClientServiceService: RestClientServiceService,
@@ -38,5 +39,13 @@ export class CartComponent {
   makeOrder() {
     this._cartServiceService.makeOrder();
     this.dataSource.data = this._cartServiceService.getCartItems();
+  }
+
+  calculateTotal(): number {
+    this.total = 0;
+    for (const item of this.dataSource.data) {
+      this.total += item.Price * item.Quantity;
+    }
+    return this.total;
   }
 }

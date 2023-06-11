@@ -44,12 +44,12 @@ export class JWTTokenServiceService {
 
   getUserId() {
     this.decodeToken();
-    return this.decodedToken ? this.decodedToken['sub'] : null;
+    return this.decodedToken ? this.decodedToken['userId'] : null;
   }
 
   isLoggedIn(): boolean {
     this.decodeToken();
-    return this.jwtToken != '' ? true : false 
+    return this.jwtToken == '' || this.jwtToken == "" ? true : false 
     
   }
 

@@ -19,7 +19,7 @@
                routerLink="/shop-single/{{ drug.Id }}"
                routerLinkActive="active"
                ariaCurrentWhenActive="page">{{ drug.Name }}</a></h5>
-          <p class="product-price">£{{ drug.Price }},00 <del>£ {{ drug.Price + 10 }}</del></p>
+          <p class="product-price">£{{ drug.Price }},00 <del>£{{ drug.Price + 10 }},00</del></p>
           <div class="btn-wrapper"> <button class="btn btn-add-to-cart"
                     (click)="addToCartFromShop(drug.Id)">Add to Cart</button></div>
         </div>
